@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Custom styles */
+@theme {
+  --font-primary: "Montserrat", sans-serif;
+
+  --color-primary: #237017;
+  --color-secondary: #72c865;
+  --color-yellow: #f0b53f;
+  --color-accent: #ffdc46;
+  --color-green: #279a64;
+  --color-dark: #002115;
+  --color-light-gray: #FBFBFB;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: white;
+}
+
+.lemon-green-gradient {
+  background: #72c865;
+  background: -webkit-linear-gradient(
+    180deg,
+    rgba(114, 200, 101, 1) 0%,
+    rgba(35, 112, 23, 1) 80%
+  );
+  background: -moz-linear-gradient(
+    180deg,
+    rgba(114, 200, 101, 1) 0%,
+    rgba(35, 112, 23, 1) 80%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(114, 200, 101, 1) 0%,
+    rgba(35, 112, 23, 1) 80%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#72C865", endColorstr="#237017", GradientType=0);
+}
+
+.lemon-green-gradient-two {
+  background: #a6e843;
+  background: -webkit-linear-gradient(
+    215deg,
+    rgba(166, 232, 67, 1) 49%,
+    rgba(53, 147, 39, 1) 68%
+  );
+  background: -moz-linear-gradient(
+    215deg,
+    rgba(166, 232, 67, 1) 49%,
+    rgba(53, 147, 39, 1) 68%
+  );
+  background: linear-gradient(
+    215deg,
+    rgba(166, 232, 67, 1) 49%,
+    rgba(53, 147, 39, 1) 68%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#A6E843", endColorstr="#359327", GradientType=0);
+}
