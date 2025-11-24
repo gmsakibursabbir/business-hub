@@ -1,645 +1,100 @@
 <?php
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @package Business_Hubs_Theme
+ */
 
 get_header(); ?>
 
-<main>
-<!-- hero -->
-<section class="w-full relative -mt-[80px] z-10">
-    
-    <!-- Splide Container -->
-    <div id="hero-main-slider" class="splide" aria-label="Hero Slider" data-config='<?php echo esc_attr(json_encode([
-      "type"       => "fade",      // Fade is often better for full-screen hero sliders
-      "rewind"     => true,
-      "autoplay"   => true,
-      "interval"   => 8000,
-      "speed"      => 1000,
-      "arrows"     => false,
-      "pagination" => true,
-      "pauseOnHover" => false,
-    ])); ?>'>
-      
-      <div class="splide__track">
-        <ul class="splide__list">
+<main class="bg-white pt-[60px] lg:pt-[80px]">
+    <div class="container mx-auto px-[25px] py-12 lg:py-20">
 
-          <!-- SLIDE 1 -->
-        <li class="splide__slide relative w-full h-[872px] lg:h-screen flex items-center overflow-hidden "  style="background-image: url('<?php echo esc_url( get_theme_file_uri('/assets/media/bhh-1.png') ); ?>'); background-size: cover; background-position: center;">
-          
+        <?php if (have_posts()): ?>
 
-            <!-- CONTENT CONTAINER (Left Side) -->
-            <div class="container mx-auto px-[25px] relative z-10 h-full flex flex-col justify-center">
-              <div class="w-full lg:w-1/2 text-white">
-                <h1 class="text-[44px] font-bold leading-tight max-w-[491px]">
-                 Compare the leading UK mobile networks.
+            <header class="mb-12 text-center">
+                <h1 class="text-3xl lg:text-5xl font-extrabold text-secondary mb-4">
+                    <?php single_post_title(); ?>
                 </h1>
-                <ul class="flex flex-row items-center gap-5 py-[28px]">
-                  <li><img src="<?php echo esc_url( get_theme_file_uri('assets/media/Vodafone.svg') ); ?>" alt="Vodafore"  class="w-[80px] h-[80px]"></li>
-                  <li><img src="<?php echo esc_url( get_theme_file_uri('assets/media/o2.svg') ); ?>" alt="o2"  class="w-[80px] h-[80px]"></li>
-                  <li><img src="<?php echo esc_url( get_theme_file_uri('assets/media/three.svg') ); ?>" alt="three"  class="w-[80px] h-[80px]"></li>
-                  <li><img src="<?php echo esc_url( get_theme_file_uri('assets/media/ee.svg') ); ?>" alt="ee"  class="w-[80px] h-[80px]"></li>
-                </ul>
-                <p class="text-white text-[32px] font-bold max-w-[466px]">
-                 Quickly and easily get the best business mobile deal for your business.
-                </p>
-                <a href="#" class="bg-accent text-dark text-base font-extrabold leading-none inline-flex flex-row justify-between items-center gap-[46px] min-h-[60px] rounded-full px-[34px] transition-all ease-in-out duration-300 hover:bg-dark hover:text-white mt-[52px]"><span>See what you could save</span> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" fill="none" viewBox="0 0 12 14">
-  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m1 1 8.534 4.655a1 1 0 0 1 .068 1.714L1 13"/>
-</svg>
-</a>
-              </div>
-            </div>
+            </header>
 
-          </li>
-          <!-- SLIDE 2 -->
-        <li class="splide__slide relative w-full h-[872px] lg:h-screen flex items-center overflow-hidden"  style="background-image: url('<?php echo esc_url( get_theme_file_uri('/assets/media/bhh-2.png') ); ?>'); background-size: cover; background-position: center;">
-          
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <?php
+                /* Start the Loop */
+                while (have_posts()):
+                    the_post();
+                    ?>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class('bg-light-gray rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300'); ?>>
 
-            <!-- CONTENT CONTAINER (Left Side) -->
-            <div class="container mx-auto px-[25px] relative z-10 h-full flex flex-col justify-center">
-              <div class="w-full lg:w-1/2 text-white">
-                <h1 class="text-[44px] font-bold leading-tight max-w-[491px]">
-                Take control of your business telecom and IT services.
-                </h1>
-                
-                <p class="text-white text-[32px] font-normal max-w-[466px] mt-[28px]">
-             Let us find you the best options, quickly and easily.
-                </p>
-                <a href="#" class="bg-accent text-dark text-base font-extrabold leading-none inline-flex flex-row justify-between items-center gap-[46px] min-h-[60px] rounded-full px-[34px] transition-all ease-in-out duration-300 hover:bg-dark hover:text-white mt-[52px]"><span>See what you could save</span> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" fill="none" viewBox="0 0 12 14">
-  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m1 1 8.534 4.655a1 1 0 0 1 .068 1.714L1 13"/>
-</svg>
-</a>
-              </div>
-            </div>
+                        <?php if (has_post_thumbnail()): ?>
+                            <div class="h-48 overflow-hidden">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('medium_large', array('class' => 'w-full h-full object-cover transition-transform duration-500 hover:scale-110')); ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
 
-          </li>
+                        <div class="p-6">
+                            <header class="mb-4">
+                                <div class="text-sm text-accent font-bold mb-2 uppercase tracking-wider">
+                                    <?php echo get_the_date(); ?>
+                                </div>
+                                <h2 class="text-xl font-bold text-secondary leading-tight mb-2">
+                                    <a href="<?php the_permalink(); ?>" class="hover:text-accent transition-colors">
+                                        <?php the_title(); ?>
+                                    </a>
+                                </h2>
+                            </header>
 
+                            <div class="text-dark mb-4 line-clamp-3">
+                                <?php the_excerpt(); ?>
+                            </div>
 
-        </ul>
-      </div>
-    </div>
-  </section>
-<!-- showcase -->
-<section>
-  <div class="w-full lg:max-w-[1155px] lg:px-0 px-[25px] mx-auto pt-[73px]">
-  <div id="hero-slider" class="splide" data-config='<?php echo esc_attr(json_encode([
-      "type"        => "loop",
-      "perPage"     => 6,
-      "gap"         => "2rem",
-      "drag"        => "free", // Makes manual dragging smooth and free-flowing
-      "arrows"      => false,
-      "pagination"  => false,
-      "cover"       => false, 
-      "fade"        => false,
-      "autoScroll"  => [
-        "speed" => 1,
-        "pauseOnHover" => true, // Optional: Pause when user hovers
-      ],
-      "breakpoints" => [
-        1024 => [
-          "perPage" => 4,
-          "gap"     => "1rem",
-        ],
-        640 => [
-          "perPage" => 4,
-          "gap"     => "0.5rem",
-          "arrows"  => false, 
-        ],
-      ],
-    ])); ?>'>
-      <div class="splide__track">
-        <ul class="splide__list">
-          <!-- 
-             FIXES APPLIED:
-             1. Changed h-[60px] to h-[500px] (60px is too small for a hero slider).
-             2. Changed object-contain to object-cover (looks better for hero banners).
-          -->
-          <li class="splide__slide">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/media/sc-01.png') ); ?>"
-                 alt="show-case image 1"
-                 class="w-full h-[58px] object-contain" loading="lazy" />
-          </li>
-          <li class="splide__slide">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/media/sc-02.png') ); ?>"
-                 alt="show-case image 2"
-                 class="w-full h-[58px] object-contain" loading="lazy" />
-          </li>
-          <li class="splide__slide">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/media/sc-03.png') ); ?>"
-                 alt="show-case image 3"
-                 class="w-full h-[58px] object-contain" loading="lazy" />
-          </li>
-          <li class="splide__slide">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/media/sc-04.png') ); ?>"
-                 alt="show-case image 4"
-                 class="w-full h-[58px] object-contain" loading="lazy" />
-          </li>
-          <li class="splide__slide">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/media/sc-05.png') ); ?>"
-                 alt="show-case image 5"
-                 class="w-full h-[58px] object-contain" loading="lazy" />
-          </li>
-          <li class="splide__slide">
-            <img src="<?php echo esc_url( get_theme_file_uri('/assets/media/sc-06.png') ); ?>"
-                 alt="show-case image 6"
-                 class="w-full h-[58px] object-contain" loading="lazy" />
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- work -->
-<section class="pt-[98px] pb-[100px]">
-  <div class="w-full lg:max-w-[1444px] lg:px-0 px-[25px] mx-auto">
-    <h2 class="lg:max-w-[944px] text-[45px] font-extrabold text-secondary mx-auto text-center leading-tight">Thousands of UK businesses trust us to help them save money - here’s why</h2>
-
-    <div class="mt-[140px]">
-      <h4 class="text-2xl text-yellow font-extrabold text-center">HOW DOES IT WORK?</h4>
-      <h3 class="text-[45px] font-extrabold text-secondary mx-auto text-center leading-none py-4">It’s as simple as 1, 2, 3.</h3>
-      <p class="text-base text-dark mx-auto text-center font-semibold">Let our trusted partners find the best telecoms solutions and pricing for you.</p>
-    </div>
-
-    <div class="flex flex-col lg:flex-row justify-between items-end gap-10 lg:gap-[50px] mt-[60px]">
-    <div class="w-full lg:w-4/10 pl-0 lg:pl-10">
-      <ul class="flex flex-col gap-[70px] mb-[70px]">
-        <li class="flex flex-row items-center gap-[42px]"><span class="min-w-[72px] min-h-[72px] flex items-center justify-center text-white text-[40px] font-bold bg-green rounded-full">1</span><p class="text-xl font-bold text-dark md:w-[338px]">Answer a few simple questions about your business.</p></li>
-        <li class="flex flex-row items-center gap-[42px]"><span class="min-w-[72px] min-h-[72px] flex items-center justify-center text-white text-[40px] font-bold bg-green rounded-full">2</span><p class="text-xl font-bold text-dark md:w-[417px]">Sit back and wait for The Business Hub to search the whole market.</p></li>
-        <li class="flex flex-row items-center gap-[42px]"><span class="min-w-[72px] min-h-[72px] flex items-center justify-center text-white text-[40px] font-bold bg-green rounded-full">3</span><p class="text-xl font-bold text-dark md:w-[397px]">Receive the best options for your specific business needs.</p></li>
-      </ul>
-      <a href="#" class="bg-accent text-dark text-base font-extrabold leading-none inline-flex flex-row justify-between items-center gap-[46px] min-h-[60px] rounded-full px-[34px] transition-all ease-in-out duration-300 hover:bg-dark hover:text-white"><span>Start saving today</span> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" fill="none" viewBox="0 0 12 14">
-  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m1 1 8.534 4.655a1 1 0 0 1 .068 1.714L1 13"/>
-</svg>
-</a>
-    </div>
-    <div class="w-full lg:w-6/10">
-      <img src="<?php echo esc_url( get_theme_file_uri('assets/media/work-demo.png') ); ?>"
-       alt="work demo image"
-       class="w-full h-full">
-    </div>
-    </div>
-  </div>
-</section>
-<!-- services -->
-<section class="bg-secondary/20 pt-[109px] pb-[221px]">
-  <div class="w-full lg:max-w-[1444px] lg:px-0 px-[25px] mx-auto">
-    <div class="">
-      <h4 class="text-2xl text-yellow font-extrabold text-center">
-        WHAT WE DO
-      </h4>
-      <h3
-        class="text-[45px] font-extrabold text-dark mx-auto text-center leading-none pt-6 pb-[51px]"
-      >
-        We help your business run efficiently and save money
-      </h3>
-      <p
-        class="text-base text-dark mx-auto text-center font-semibold max-w-[1006px]"
-      >
-        The Business Hub compares business telecom and IT services quickly and
-        efficiently. By only working with award-winning UK based suppliers, we
-        have access to exclusive discounts that we can pass on to you.
-      </p>
-    </div>
-    <div class="hidden lg:grid grid-cols-4 gap-3 mt-[78px]">
-      <!-- 1 -->
-      <div
-        class="flex flex-col rounded-[10px] group hover:shadow-lg transition-all duration-300"
-      >
-        <!-- img -->
-        <div
-          class="w-full h-[300px] bg-cover bg-center bg-no-repeat rounded-t-[10px]"
-             style="background-image: url('<?php echo esc_url( get_theme_file_uri('/assets/media/scv-01.png') ); ?>');">
-        </div>
-
-        <!-- content -->
-        <div
-          class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205B17_0%,#F8D851_100%)] transition-colors duration-300 pt-[17px] pb-5 px-6 group-hover:pt-[32px] group-hover:pb-7 rounded-b-[10px] flex flex-col justify-between min-h-[208px] text-center"
-        >
-          <div>
-            <h3
-              class="text-xl text-white font-extrabold group-hover:text-accent leading-none"
-            >
-              Business Mobiles
-            </h3>
-            <p class="text-sm text-white font-semibold mt-5">
-              Find the best network and contract in seconds.
-            </p>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              class="bg-accent text-dark text-base font-extrabold leading-none inline-flex flex-row justify-center items-center gap-[10px] min-h-[48px] rounded-full px-[34px] transition-all ease-in-out duration-300 hover:bg-dark hover:text-white"
-              ><span>Get started</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="14"
-                fill="none"
-                viewBox="0 0 12 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                  d="m1 1 8.534 4.655a1 1 0 0 1 .068 1.714L1 13"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 2 -->
-      <div
-        class="flex flex-col rounded-[10px] group hover:shadow-lg transition-all duration-300"
-      >
-        <!-- img -->
-        <div
-          class="w-full h-[300px] bg-cover bg-center bg-no-repeat rounded-t-[10px]"
-             style="background-image: url('<?php echo esc_url( get_theme_file_uri('/assets/media/scv-02.png') ); ?>');">
-        </div>
-
-        <!-- content -->
-        <div
-          class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205B17_0%,#F8D851_100%)] transition-colors duration-300 pt-[17px] pb-5 px-6 group-hover:pt-[32px] group-hover:pb-7 rounded-b-[10px] flex flex-col justify-between min-h-[208px] text-center"
-        >
-          <div>
-            <h3
-              class="text-xl text-white font-extrabold group-hover:text-accent leading-none"
-            >
-             Business Phone System
-            </h3>
-            <p class="text-sm text-white font-semibold mt-5">
-       With the 2027 switch off on the horizon, find the right system for your business.
-            </p>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              class="bg-accent text-dark text-base font-extrabold leading-none inline-flex flex-row justify-center items-center gap-[10px] min-h-[48px] rounded-full px-[34px] transition-all ease-in-out duration-300 hover:bg-dark hover:text-white"
-              ><span>Get started</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="14"
-                fill="none"
-                viewBox="0 0 12 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                  d="m1 1 8.534 4.655a1 1 0 0 1 .068 1.714L1 13"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 3 -->
-      <div
-        class="flex flex-col rounded-[10px] group hover:shadow-lg transition-all duration-300"
-      >
-        <!-- img -->
-        <div
-          class="w-full h-[300px] bg-cover bg-center bg-no-repeat rounded-t-[10px]"
-             style="background-image: url('<?php echo esc_url( get_theme_file_uri('/assets/media/scv-03.png') ); ?>');">
-        </div>
-
-        <!-- content -->
-        <div
-          class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205B17_0%,#F8D851_100%)] transition-colors duration-300 pt-[17px] pb-5 px-6 group-hover:pt-[32px] group-hover:pb-7 rounded-b-[10px] flex flex-col justify-between min-h-[208px] text-center"
-        >
-          <div>
-            <h3
-              class="text-xl text-white font-extrabold group-hover:text-accent leading-none"
-            >
-             Broadband
-            </h3>
-            <p class="text-sm text-white font-semibold mt-5">
-             Get online securely with the best business broadband solutions.
-            </p>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              class="bg-accent text-dark text-base font-extrabold leading-none inline-flex flex-row justify-center items-center gap-[10px] min-h-[48px] rounded-full px-[34px] transition-all ease-in-out duration-300 hover:bg-dark hover:text-white"
-              ><span>Get started</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="14"
-                fill="none"
-                viewBox="0 0 12 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                  d="m1 1 8.534 4.655a1 1 0 0 1 .068 1.714L1 13"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- 4 -->
-      <div
-        class="flex flex-col rounded-[10px] group hover:shadow-lg transition-all duration-300"
-      >
-        <!-- img -->
-        <div
-          class="w-full h-[300px] bg-cover bg-center bg-no-repeat rounded-t-[10px]"
-             style="background-image: url('<?php echo esc_url( get_theme_file_uri('/assets/media/scv-04.png') ); ?>');">
-        </div>
-
-        <!-- content -->
-        <div
-          class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205B17_0%,#F8D851_100%)] transition-colors duration-300 pt-[17px] pb-5 px-6 group-hover:pt-[32px] group-hover:pb-7 rounded-b-[10px] flex flex-col justify-between min-h-[208px] text-center"
-        >
-          <div>
-            <h3
-              class="text-xl text-white font-extrabold group-hover:text-accent leading-none"
-            >
-            IT managed services
-            </h3>
-            <p class="text-sm text-white font-semibold mt-5">
-             Need to improve efficiency, reduce costs and ensure reliable, secure technology infrastructure?
-            </p>
-          </div>
-
-          <div>
-            <a
-              href="#"
-              class="bg-accent text-dark text-base font-extrabold leading-none inline-flex flex-row justify-center items-center gap-[10px] min-h-[48px] rounded-full px-[34px] transition-all ease-in-out duration-300 hover:bg-dark hover:text-white"
-              ><span>Get started</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="14"
-                fill="none"
-                viewBox="0 0 12 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                  d="m1 1 8.534 4.655a1 1 0 0 1 .068 1.714L1 13"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- about us -->
-<section class="lemon-green-gradient pt-[76px] pb-[63px]">
-  <div class="w-full lg:max-w-[1444px] lg:px-0 px-[25px] mx-auto flex flex-col lg:flex-row justify-between items-center gap-[68px]">
-    <div class="w-full lg:w-1/2">
-      <img src="<?php echo esc_url( get_theme_file_uri('assets/media/about.png') ); ?>" alt="about image" class="w-full h-full" />
-    </div>
-    <div class="w-full lg:w-1/2">
-      <h4 class="text-2xl text-white font-extrabold">
-       ABOUT US
-      </h4>
-      <h3
-        class="text-[40px] font-extrabold text-white leading-tight pt-[15px] pb-[22px]"
-      >
-      We help businesses run better, for less
-      </h3>
-      <p
-        class="text-base text-white font-semibold max-w-[674px]"
-      >
-       The Business Hub helps UK businesses streamline their telecoms and reduce spend - without the hassle. By only working with award-winning UK based suppliers, we find the most competitive offers so that you can concentrate on your business. We then connect you to the best option for your needs.
-      </p>
-
-<div class="mt-[38px]">
-            <a
-              href="#"
-              class="bg-accent text-dark text-base font-extrabold leading-none inline-flex flex-row justify-center items-center gap-[10px] min-h-[50px] rounded-full px-[34px] transition-all ease-in-out duration-300 hover:bg-dark hover:text-white"
-              ><span>See how we can help</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="14"
-                fill="none"
-                viewBox="0 0 12 14"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                  d="m1 1 8.534 4.655a1 1 0 0 1 .068 1.714L1 13"
-                />
-              </svg>
-            </a>
-          </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- blog -->
-  <section class="pt-10 pb-[70px] bg-light-gray">
-    <div class="w-full lg:max-w-[1200px] mx-auto px-[25px]">
-      <div class="mb-[83px]">
-      <h4 class="text-2xl text-yellow font-extrabold text-center">
-       RESOURCES
-      </h4>
-      <h3
-        class="text-[45px] font-extrabold text-secondary mx-auto text-center leading-none pt-[22px] pb-[24px]"
-      >
-       Your shortcut to smarter business decisions
-      </h3>
-      <p
-        class="text-base text-dark mx-auto text-center font-semibold max-w-[777px]"
-      >
-       From the latest mobile network information to the full fibre roll out, check out our resources to help keep your business telecoms run smoothly.
-      </p>
-    </div>
-      <div class="splide blog-carousel" data-config='<?php echo esc_attr(json_encode([
-        "type"       => "slide", 
-        "rewind"     => false,
-        "autoplay"   => false,
-        "perPage"    => 1,
-        "gap"        => "2rem",
-        "arrows"     => true,
-        "pagination" => false,
-        "drag"       => true,
-      ])); ?>'>
-        
-        <div class="splide__track py-4">
-          <ul class="splide__list">
-
-            <?php
-            // 1. Define Query Arguments
-            $blog_query = new WP_Query(array(
-                'post_type'      => 'post',
-                'posts_per_page' => 6, // Number of slides
-            ));
-
-            // 2. Start Loop
-            if ($blog_query->have_posts()) :
-                while ($blog_query->have_posts()) : $blog_query->the_post(); 
-                
-                // Helper for Read Time
-                $word_count = str_word_count(strip_tags(get_the_content()));
-                $read_time = ceil($word_count / 200); // 200 words per minute
-                
-                // Helper for Image
-                $img_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
-                // Fallback image if no featured image exists
-                if (!$img_url) {
-                    $img_url = get_theme_file_uri('/assets/media/sc-04.png'); 
-                }
-            ?>
-
-            <li class="splide__slide">
-              <div class="bg-white rounded-[30px] shadow-xl overflow-hidden flex flex-col lg:flex-row h-auto lg:h-[465px]">
-                
-                <!-- Left: Featured Image -->
-                <div class="w-full lg:w-[45%] h-[250px] lg:h-full relative">
-                  <img src="<?php echo esc_url($img_url); ?>" 
-                       alt="<?php the_title_attribute(); ?>" 
-                       class="absolute inset-0 w-full h-full object-cover" />
-                </div>
-
-                <!-- Right: Content -->
-                <div class="w-full lg:w-[55%] p-8 lg:p-12 flex flex-col justify-center text-left">
-                  
-                  <!-- Post Title -->
-                  <h3 class="text-[#0D1F23] text-2xl lg:text-3xl font-extrabold mb-3 leading-snug">
-                    <a href="<?php the_permalink(); ?>" class="hover:text-[#205B17] transition-colors">
-                        <?php the_title(); ?>
-                    </a>
-                  </h3>
-
-                  <!-- Meta: Date & Read Time -->
-                  <div class="flex items-center text-[#F8D851] font-bold text-sm lg:text-base mb-6 uppercase tracking-wide">
-                    <span><?php echo get_the_date('F j, Y'); ?></span>
-                    <span class="mx-2">•</span>
-                    <span><?php echo $read_time; ?> Min Read</span>
-                  </div>
-
-                  <!-- Excerpt -->
-                  <div class="text-gray-600 text-base lg:text-lg mb-8 leading-relaxed line-clamp-3">
-                    <?php the_excerpt(); ?>
-                  </div>
-
-                  <!-- Read More Link -->
-                  <div>
-                    <a href="<?php the_permalink(); ?>" class="inline-flex items-center bg-[#F8D851] text-black font-extrabold py-3 px-8 rounded-full hover:bg-yellow-300 transition-colors">
-                      Read more 
-                      <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </li>
-
-            <?php 
+                            <a href="<?php the_permalink(); ?>"
+                                class="inline-flex items-center text-secondary font-bold hover:text-accent transition-colors">
+                                Read More
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                    <?php
                 endwhile;
-                wp_reset_postdata(); // Important: Reset global post data
-            else : 
-            ?>
-                <!-- Fallback if no posts found -->
-                <li class="splide__slide">
-                    <div class="p-12 text-center">No posts found.</div>
-                </li>
-            <?php endif; ?>
+                ?>
+            </div>
 
-          </ul>
-        </div>
+            <div class="mt-12 flex justify-center">
+                <?php
+                the_posts_pagination(array(
+                    'mid_size' => 2,
+                    'prev_text' => __('Previous', 'business-hubs-theme'),
+                    'next_text' => __('Next', 'business-hubs-theme'),
+                    'class' => 'flex gap-2',
+                ));
+                ?>
+            </div>
 
-        <!-- Custom Navigation Arrows -->
-        <div class="splide__arrows flex justify-center gap-5 mt-[55px]">
-          <button class="splide__arrow splide__arrow--prev !static">
-            <img src="<?php echo esc_url( get_theme_file_uri('assets/media/arrow-left.svg') ); ?>" alt="previous arrow" class="min-w-[36px] min-h-[36px]" />
-          </button>
-          <button class="splide__arrow splide__arrow--next !static ">
-             <img src="<?php echo esc_url( get_theme_file_uri('assets/media/arrow-right.svg') ); ?>" alt="next arrow" class="min-w-[36px] min-h-[36px]" />
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- newsletter -->
-
-  <section class="pt-[67px] pb-[85px]">
-    <div class="w-full lg:max-w-[1378px] lg:px-0 px-[25px] mx-auto">
-           <div class="mb-[40px]">
-      <h4 class="text-2xl text-yellow font-extrabold text-center">
-      NEWSLETTER
-      </h4>
-      <h3
-        class="text-[45px] font-extrabold text-secondary mx-auto text-center leading-none pt-[10px] pb-[20px]"
-      >
-       Sign up to our newsletter
-      </h3>
-      <p
-        class="text-base text-dark mx-auto text-center font-semibold max-w-[777px]"
-      >
-      Stay updated with the latest news, insights and offers from The Business Hub.
-      </p>
-    </div>
-    <!-- Form Container -->
-    <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="POST" class="flex flex-col lg:flex-row gap-5 items-center justify-center w-full">
-      
-      <!-- Hidden Fields for WordPress Handler -->
-      <input type="hidden" name="action" value="bh_newsletter_signup">
-      <?php wp_nonce_field('bh_newsletter_signup', 'newsletter_nonce'); ?>
-
-      <!-- First Name Input -->
-      <div class="w-full lg:w-1/4 ">
-        <input type="text" name="name" placeholder="First Name" required
-               class="w-full px-6 py-[14px] rounded-[15px] border-[2px] bg-[#FCFCFC] border-[#D9D9D9] text-dark focus:outline-none focus:border-[#F8D851] focus:ring-2 focus:ring-[#F8D851] transition-all placeholder-[#14505E] text-base font-semibold">
-      </div>
-
-      <!-- Last Name Input (Optional - stored in Note or combined name if handler doesn't support separate last name) -->
-      <!-- Note: Your current handler only checks $_POST['name']. You might want to combine JS or update handler. 
-           For now, I'll name it 'lastname' and we can update the handler or let it be handled separately. -->
-      <div class="w-full lg:w-1/4 ">
-        <input type="text" name="lastname" placeholder="Last Name"
-               class="w-full px-6 py-[14px] rounded-[15px] border-[2px] bg-[#FCFCFC] border-[#D9D9D9] text-dark focus:outline-none focus:border-[#F8D851] focus:ring-2 focus:ring-[#F8D851] transition-all placeholder-[#14505E] text-base font-semibold">
-      </div>
-
-      <!-- Email Input -->
-      <div class="w-full lg:w-1/4 ">
-        <input type="email" name="email" placeholder="youremail@email.com" required
-               class="w-full px-6 py-[14px] rounded-[15px] border-[2px] bg-[#FCFCFC] border-[#D9D9D9] text-dark focus:outline-none focus:border-[#F8D851] focus:ring-2 focus:ring-[#F8D851] transition-all placeholder-[#14505E] text-base font-semibold">
-      </div>
-
-      <!-- Submit Button -->
-      <div class="w-full lg:w-1/4 ">
-        <button type="submit" 
-                class="w-full  bg-[#F8D851] hover:bg-yellow-400 text-black font-extrabold text-lg py-[14px] px-12 rounded-full transition-colors duration-300 shadow-md whitespace-nowrap cursor-pointer">
-          Sign Up
-        </button>
-      </div>
-
-    </form>
-    <p class="text-base text-dark font-semibold mt-[18px]">By signing up you are agreeing to receive emails from The Business Hub, you can unsubscribe at any time.</p>
-
-    <!-- Success/Error Message Handling -->
-    <?php if (isset($_GET['newsletter'])): ?>
-      <div class="mt-6 text-center">
-        <?php if ($_GET['newsletter'] === 'success'): ?>
-          <p class="text-green-600 font-bold">Thank you for signing up!</p>
-        <?php elseif ($_GET['newsletter'] === 'invalid_email'): ?>
-          <p class="text-red-600 font-bold">Please provide a valid email address.</p>
         <?php else: ?>
-          <p class="text-red-600 font-bold">Something went wrong. Please try again.</p>
+
+            <section class="no-results not-found text-center">
+                <h2 class="text-2xl font-bold text-secondary mb-4">
+                    <?php esc_html_e('Nothing Found', 'business-hubs-theme'); ?></h2>
+                <p class="text-dark">
+                    <?php esc_html_e('It seems we can&rsquo;t find what you&rsquo;re looking for.', 'business-hubs-theme'); ?>
+                </p>
+            </section>
+
         <?php endif; ?>
-      </div>
-    <?php endif; ?>
+
     </div>
-  </section>
 </main>
 
-<?php get_footer();
+<?php
+get_footer();

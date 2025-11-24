@@ -1,28 +1,100 @@
 document.addEventListener('DOMContentLoaded', function() {
+  
+  // ------------------------------------------------------
+  // 1. Header Scroll Logic
+  // ------------------------------------------------------
   const header = document.getElementById('main-header');
+  const logo = header ? header.querySelector('img') : null; // Target the logo image
   
-  // Guard clause: if header doesn't exist on this page, stop running
-  if (!header) return;
+  if (header) {
+    // Default State: Transparent, 80px tall
+    const defaultClasses = ['bg-transparent'];
+    
+    // Scrolled State: Dark BG, Shadow
+    // Mobile: h-[60px]
+    // Desktop: lg:h-[80px] (Keeps it taller on large screens)
+    const scrollClasses  = ['bg-[#1a1a1a]', 'shadow-md']; 
 
-  // Define the classes for the two states
-  // State 1: Top of page (Tall, Dark Grey)
-  const defaultClasses = ['bg-transparent', 'h-[80px]'];
-  
-  // State 2: Scrolled (Short, Red)
-  const scrollClasses  = ['bg-green', 'h-[60px]', 'shadow-lg'];
-
-  function handleScroll() {
-    if (window.scrollY > 50) {
-      // Scrolled Down: Remove default, Add scroll
-      header.classList.remove(...defaultClasses);
-      header.classList.add(...scrollClasses);
-    } else {
-      // Top: Remove scroll, Add default
-      header.classList.remove(...scrollClasses);
-      header.classList.add(...defaultClasses);
+    function handleScroll() {
+      if (window.scrollY > 50) {
+        // Scrolled Down
+        header.classList.remove(...defaultClasses);
+        header.classList.add(...scrollClasses);
+        
+        // Scale logo down by 10%
+        if (logo) {
+            logo.classList.add('scale-95', 'transition-transform', 'duration-300');
+        }
+      } else {
+        // Back at Top
+        header.classList.remove(...scrollClasses);
+        header.classList.add(...defaultClasses);
+        
+        // Reset logo size
+        if (logo) {
+            logo.classList.remove('scale-95');
+        }
+      }
     }
+    window.addEventListener('scroll', handleScroll);
   }
 
-  // Listen for scroll events
-  window.addEventListener('scroll', handleScroll);
+  // ------------------------------------------------------
+  // 2. Mobile Menu Logic
+  // ------------------------------------------------------
+  const openBtn = document.getElementById('mobile-menu-open');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const menuOverlay = document.getElementById('mobile-menu-overlay');
+  const menuPanel = document.getElementById('mobile-menu-panel');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  function openMenu() {
+    if (!menuOverlay || !menuPanel) return;
+    
+    // 1. Unhide the wrapper
+    menuOverlay.classList.remove('hidden');
+    
+    // 2. Small delay to allow DOM to render, then animate opacity and slide
+    setTimeout(() => {
+        menuOverlay.classList.remove('opacity-0');
+        menuPanel.classList.remove('translate-x-full');
+    }, 10);
+    
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    if (!menuOverlay || !menuPanel) return;
+
+    // 1. Animate out
+    menuOverlay.classList.add('opacity-0');
+    menuPanel.classList.add('translate-x-full');
+
+    // 2. Wait for animation to finish, then hide
+    setTimeout(() => {
+        menuOverlay.classList.add('hidden');
+        // Re-enable scrolling
+        document.body.style.overflow = '';
+    }, 300);
+  }
+
+  // Event Listeners
+  if (openBtn) openBtn.addEventListener('click', openMenu);
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+  // Close when clicking the dark background (overlay)
+  if (menuOverlay) {
+    menuOverlay.addEventListener('click', function(e) {
+        if (e.target === menuOverlay) {
+            closeMenu();
+        }
+    });
+  }
+
+  // Close when clicking any link inside the menu
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
 });
