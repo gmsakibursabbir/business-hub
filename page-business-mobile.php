@@ -285,9 +285,10 @@ get_header(); ?>
             <!-- steps -->
 
             <div
-                class="bg-[#F7F9F6] w-full rounded-[18px] lg:max-w-[1434px] mx-auto h-[735px] pt-[60px] pb-[27px] lg:mt-[61px] lg:mb-[90px]">
-
+                class="">
+                <div id="multi-step-quote-form"></div>
             </div>
+
             <!-- bottom -->
             <div class="px-5 lg:px-0 hidden lg:block">
                 <h3
@@ -389,7 +390,8 @@ get_header(); ?>
                 </h2>
                 <div class="max-w-[674px]">
                     <p class="text-base text-white font-extrabold ">Empowering business mobility</p>
-                    <p class="text-base text-white font-semibold pt-4 pb-2">Boost your company’s mobility with our complete
+                    <p class="text-base text-white font-semibold pt-4 pb-2">Boost your company’s mobility with our
+                        complete
                         mobile support offerings. From managing devices to optimizing networks, we provide a variety of
                         services to keep your business connected at all times, anywhere. Whether you require assistance
                         with mobile contracts, device troubleshooting, or upgrading to cutting-edge technology, our

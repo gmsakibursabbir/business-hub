@@ -355,7 +355,7 @@ get_header(); ?>
           </div>
           <!-- content -->
           <div
-            class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205B17_0%,#F8D851_100%)] transition-all duration-500 ease-in-out pt-[17px] pb-5 px-6 rounded-b-[10px] flex flex-col justify-between min-h-[208px] group-hover:min-h-[218px] text-center">
+            class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205b17_0%,#416f20_50%,#638229_100%)] transition-all duration-500 ease-in-out pt-[17px] pb-5 px-6 rounded-b-[10px] flex flex-col justify-between min-h-[208px] group-hover:min-h-[218px] text-center">
             <div>
               <h3
                 class="text-xl text-white font-extrabold group-hover:text-accent leading-none transition-colors duration-300">
@@ -389,7 +389,7 @@ get_header(); ?>
           </div>
           <!-- content -->
           <div
-            class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205B17_0%,#F8D851_100%)] transition-all duration-500 ease-in-out pt-[17px] pb-5 px-6 rounded-b-[10px] flex flex-col justify-between min-h-[208px] group-hover:min-h-[218px] text-center">
+            class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205b17_0%,#416f20_50%,#638229_100%)] transition-all duration-500 ease-in-out pt-[17px] pb-5 px-6 rounded-b-[10px] flex flex-col justify-between min-h-[208px] group-hover:min-h-[218px] text-center">
             <div>
               <h3
                 class="text-xl text-white font-extrabold group-hover:text-accent leading-none transition-colors duration-300">
@@ -423,7 +423,7 @@ get_header(); ?>
           </div>
           <!-- content -->
           <div
-            class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205B17_0%,#F8D851_100%)] transition-all duration-500 ease-in-out pt-[17px] pb-5 px-6 rounded-b-[10px] flex flex-col justify-between min-h-[208px] group-hover:min-h-[218px] text-center">
+            class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205b17_0%,#416f20_50%,#638229_100%)] transition-all duration-500 ease-in-out pt-[17px] pb-5 px-6 rounded-b-[10px] flex flex-col justify-between min-h-[208px] group-hover:min-h-[218px] text-center">
             <div>
               <h3
                 class="text-xl text-white font-extrabold group-hover:text-accent leading-none transition-colors duration-300">
@@ -457,7 +457,7 @@ get_header(); ?>
           </div>
           <!-- content -->
           <div
-            class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205B17_0%,#F8D851_100%)] transition-all duration-500 ease-in-out pt-[17px] pb-5 px-6 rounded-b-[10px] flex flex-col justify-between min-h-[208px] group-hover:min-h-[218px] text-center">
+            class="bg-[#226F17] group-hover:bg-[linear-gradient(90deg,#205b17_0%,#416f20_50%,#638229_100%)] transition-all duration-500 ease-in-out pt-[17px] pb-5 px-6 rounded-b-[10px] flex flex-col justify-between min-h-[208px] group-hover:min-h-[218px] text-center">
             <div>
               <h3
                 class="text-xl text-white font-extrabold group-hover:text-accent leading-none transition-colors duration-300">
@@ -483,16 +483,17 @@ get_header(); ?>
 
       </div>
       <!-- Splide Container -->
-      <div id="services-slider" class="splide mt-[30px] px-5 block lg:hidden relative" aria-label="services Slider" data-config='<?php echo esc_attr(json_encode([
-        "type" => "loop",      // Fade is often better for full-screen hero sliders
-        "rewind" => true,
-        "autoplay" => true,
-        "interval" => 8000,
-        "speed" => 1000,
-        "arrows" => true,
-        "pagination" => true,
-        "pauseOnHover" => false,
-      ])); ?>'>
+      <div id="services-slider" class="splide mt-[30px] px-5 block lg:hidden relative" aria-label="services Slider"
+        data-config='<?php echo esc_attr(json_encode([
+          "type" => "loop",      // Fade is often better for full-screen hero sliders
+          "rewind" => true,
+          "autoplay" => true,
+          "interval" => 8000,
+          "speed" => 1000,
+          "arrows" => true,
+          "pagination" => true,
+          "pauseOnHover" => false,
+        ])); ?>'>
         <div class="splide__track">
           <ul class="splide__list">
 
@@ -643,10 +644,11 @@ get_header(); ?>
           </ul>
         </div>
         <!-- Custom services Navigation Arrows -->
-        <div class="splide__arrows flex justify-between gap-5 w-full absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+        <div
+          class="splide__arrows flex justify-between gap-5 w-full absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
           <button class="splide__arrow splide__arrow--prev !static -ml-1 opacity-100">
-            <img src="<?php echo esc_url(get_theme_file_uri('assets/media/arrow-white-left.png')); ?>" alt="previous arrow"
-              class="min-w-[60px] min-h-[60px]" />
+            <img src="<?php echo esc_url(get_theme_file_uri('assets/media/arrow-white-left.png')); ?>"
+              alt="previous arrow" class="min-w-[60px] min-h-[60px]" />
           </button>
           <button class="splide__arrow splide__arrow--next !static  -mr-1 opacity-100">
             <img src="<?php echo esc_url(get_theme_file_uri('assets/media/arrow-white-right.png')); ?>" alt="next arrow"

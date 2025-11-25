@@ -2,6 +2,7 @@ import Person from "./scripts/Person";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Lenis from "lenis";
+import MultiStepForm from "./scripts/MultiStepForm";
 
 const lenis = new Lenis({
   autoRaf: true,
@@ -11,9 +12,15 @@ const lenis = new Lenis({
 console.log("Lenis initialized");
 
 const person1 = new Person("Brad");
-if (document.querySelector("#render-react-example-here")) {
+// if (document.querySelector("#render-react-example-here")) {
+//   const root = ReactDOM.createRoot(
+//     document.querySelector("#render-react-example-here")
+//   );
+//   root.render(<ExampleReactComponent />);
+// }
+if (document.querySelector("#multi-step-quote-form")) {
   const root = ReactDOM.createRoot(
-    document.querySelector("#render-react-example-here")
+    document.querySelector("#multi-step-quote-form")
   );
-  root.render(<ExampleReactComponent />);
+  root.render(<MultiStepForm />);
 }

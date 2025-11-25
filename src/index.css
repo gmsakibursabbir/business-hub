@@ -82,14 +82,23 @@ body {
 }
 
 .ylg-gradient {
- background: linear-gradient(
-  180deg,
-  #c0f04a 0%,
-  #8fd834 35%,
-  #4ea626 70%,
-  #1f7e22 100%
-);
-
+  background: linear-gradient(
+    180deg,
+    #c0f04a 0%,
+    #8fd834 35%,
+    #4ea626 70%,
+    #1f7e22 100%
+  );
+}
+.ty-gradient {
+  background: linear-gradient(
+    45deg,
+    #359327 0%,
+    #359427 30%,
+    #5fb231 55%,
+    #76c437 75%,
+    #a6e843 100%
+  );
 }
 
 @layer utilities {
